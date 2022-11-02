@@ -1,0 +1,5 @@
+/* Este archivo compila todo esto de tailwind y tambien podemos agregar css custom */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
