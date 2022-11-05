@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import InputChecklist from "./components/InputChecklist";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { TiPlus } from "react-icons/ti";
 
 function App() {
     const initialState = {
-        id: 1,
+        id: Date.now(),
         icon: "🍕",
         list: "Comprar pizzas",
     };
@@ -16,11 +17,12 @@ function App() {
         setChecklists([
             ...checklists,
             {
-                id: 2,
+                id: Date.now(),
                 icon: "🍕",
                 list: checklist,
             },
         ]);
+        setChecklist("");
     };
 
     return (
@@ -43,13 +45,13 @@ function App() {
                             setChecklist(e.target.value);
                         }}
                     />
-                    <button
+                    <TiPlus type="submit" onClick={() => createChecklist()} />
+                    {/* <button
                         type="button"
-                        onClick={() => createChecklist()}
                         className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                     >
                         Guardar
-                    </button>
+                    </button> */}
                 </form>
             </header>
             <main className="bg-gradient-to-b from-primary-300 to-primary-200 h-full">
@@ -59,14 +61,21 @@ function App() {
                             id="checklist"
                             className=" flex flex-col items-center gap-1.5 mx-auto"
                         >
-                            {checklists &&
+                            {checklists.length ? (
                                 checklists.map(({ id, icon, list }) => (
                                     <InputChecklist
                                         key={id}
+                                        id={id}
                                         icon={icon}
                                         list={list}
+                                        checklist={checklist}
+                                        checklists={checklists}
+                                        setChecklists={setChecklists}
                                     />
-                                ))}
+                                ))
+                            ) : (
+                                <p>nada</p>
+                            )}
                         </section>
                     </div>
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 ">
