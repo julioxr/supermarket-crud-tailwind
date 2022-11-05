@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import InputChecklist from "./components/InputChecklist";
 import Header from "./components/Header";
 import DownButton from "./components/DownButton";
+import EmptyChecklist from "./components/EmptyChecklist";
 
 function App() {
     const initialState = {
         id: Date.now(),
-        icon: "🍕",
-        list: "Comprar pizzas",
+        list: " 🍕 Comprar pizzas",
     };
 
     const [checklist, setChecklist] = useState("");
@@ -18,7 +18,6 @@ function App() {
             ...checklists,
             {
                 id: Date.now(),
-                icon: "🍕",
                 list: checklist,
             },
         ]);
@@ -45,7 +44,6 @@ function App() {
                                     <InputChecklist
                                         key={id}
                                         id={id}
-                                        icon={icon}
                                         list={list}
                                         checklist={checklist}
                                         checklists={checklists}
@@ -53,11 +51,7 @@ function App() {
                                     />
                                 ))
                             ) : (
-                                <div className="h-full text-2xl flex items-center animate-pulse">
-                                    <p className=" text-primary-600 ">
-                                        start shopping now
-                                    </p>
-                                </div>
+                                <EmptyChecklist />
                             )}
                         </section>
                     </div>

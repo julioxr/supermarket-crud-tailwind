@@ -11,10 +11,8 @@ const InputChecklist = ({ id, icon, list, checklists, setChecklists }) => {
 
     return (
         <div className="flex rounded-lg bg-gradient-to-l from-primary-400 to-primary-500 text-primary-50  p-2 m-1 w-80 space-x-1 drop-shadow-md shadow-primary-400 transition-all hover:my-3 hover:text-white hover:scale-105 border border-primary-50">
-            <span className="w-6 py-2">{icon}</span>
-
-            <div className="flex w-full justify-between">
-                <p className=" text-base text-primary-100 py-2">{list}</p>
+            <div className="flex w-full justify-between items-center">
+                <p className=" text-base text-primary-100 py-[7px]">{list}</p>
                 <TiDelete
                     id={id}
                     className="text-2xl cursor-pointer"

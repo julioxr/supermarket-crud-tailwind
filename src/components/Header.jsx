@@ -18,13 +18,13 @@ const Header = ({ checklist, setChecklist, createChecklist }) => {
                         placeholder="
                         what do you need to buy today?"
                         value={checklist}
-                        className="rounded-lg font-thin placeholder:italic placeholder:text-slate-400 p-2.5 m-4 w-80 drop-shadow shadow-slate-500 text-base"
+                        className="rounded-lg font-thin placeholder:italic placeholder:text-slate-400 p-2.5 m-4 w-80 drop-shadow shadow-slate-500 text-base "
                         onChange={(e) => {
                             setChecklist(e.target.value);
                         }}
                     />
                     <TiPlus
-                        className="absolute right-8 text-primary-600"
+                        className="absolute right-6 text-primary-200 text-2xl cursor-pointer"
                         type="submit"
                         onClick={() => createChecklist()}
                     />
