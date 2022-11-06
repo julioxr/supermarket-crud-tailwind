@@ -7,7 +7,7 @@ import EmptyChecklist from "./components/EmptyChecklist";
 function App() {
     const initialState = {
         id: Date.now(),
-        list: " 🍕 Comprar pizzas",
+        list: "🍕 Comprar pizzas",
     };
 
     const [checklist, setChecklist] = useState("");
@@ -23,6 +23,21 @@ function App() {
         ]);
         setChecklist("");
     };
+
+    const getListFromLocal = () => {
+        const dataFromLocal = JSON.parse(localStorage.getItem("list"));
+        return dataFromLocal;
+    };
+    useEffect(() => {
+        const res = getListFromLocal();
+        console.log(res);
+        //console.log(JSON.parse(localStorage.getItem("list")).length );
+    }, []);
+
+    useEffect(() => {
+        // Cuando se modifica el Checklists (el arrray de list) se va actualizar el localstorage guardando la nueva info
+        localStorage.setItem("list", JSON.stringify(checklists));
+    }, [checklists]);
 
     return (
         <>
