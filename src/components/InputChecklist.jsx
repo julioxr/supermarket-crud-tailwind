@@ -1,7 +1,7 @@
 import React from "react";
 import { TiDelete } from "react-icons/ti";
 
-const InputChecklist = ({ id, icon, list, checklists, setChecklists }) => {
+const InputChecklist = ({ id, list, checklists, setChecklists }) => {
     const deleteItemList = () => {
         const deletedItem = checklists.filter((itemList) => itemList.id !== id);
         setChecklists(deletedItem);

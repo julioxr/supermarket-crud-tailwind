@@ -3,9 +3,10 @@ import React from "react";
 const ErrorToast = ({ error }) => {
     return (
         <>
-            <div className="absolute flex border bg-red-800 ">
-                <p className="text-primary-600">{error}</p>
-                <span> x </span>
+            <div className="absolute w-1/2 h-8 top-60 left-1/2 transform -translate-x-1/2">
+                <div className="flex justify-center ">
+                    <p className="text-sm text-red-600/70">{error}</p>
+                </div>
             </div>
         </>
     );

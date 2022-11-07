@@ -66,7 +66,7 @@ function App() {
                             className=" flex flex-col items-center gap-1.5 mx-auto h-full "
                         >
                             {checklists.length ? (
-                                checklists.map(({ id, icon, list }) => (
+                                checklists.map(({ id, list }) => (
                                     <InputChecklist
                                         key={id}
                                         id={id}
