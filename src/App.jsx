@@ -3,17 +3,32 @@ import InputChecklist from "./components/InputChecklist";
 import Header from "./components/Header";
 import DownButton from "./components/DownButton";
 import EmptyChecklist from "./components/EmptyChecklist";
+import ErrorToast from "./components/ErrorToast";
 
 function App() {
-    const initialState = {
-        id: Date.now(),
-        list: "🍕 Comprar pizzas",
+    const getListFromLocal = () => {
+        const dataFromLocal = localStorage.getItem("list");
+        if (dataFromLocal) {
+            return JSON.parse(dataFromLocal);
+        } else {
+            return [
+                {
+                    id: Date.now(),
+                    list: "🍕 Buy pizza",
+                },
+            ];
+        }
     };
 
     const [checklist, setChecklist] = useState("");
-    const [checklists, setChecklists] = useState([initialState]);
+    const [checklists, setChecklists] = useState(getListFromLocal);
+    const [error, setError] = useState("");
 
     const createChecklist = () => {
+        if (!checklist) {
+            setError("You must write an article to go shopping");
+            return;
+        }
         setChecklists([
             ...checklists,
             {
@@ -22,22 +37,17 @@ function App() {
             },
         ]);
         setChecklist("");
+        setEr;
     };
-
-    const getListFromLocal = () => {
-        const dataFromLocal = JSON.parse(localStorage.getItem("list"));
-        return dataFromLocal;
-    };
-    useEffect(() => {
-        const res = getListFromLocal();
-        console.log(res);
-        //console.log(JSON.parse(localStorage.getItem("list")).length );
-    }, []);
 
     useEffect(() => {
         // Cuando se modifica el Checklists (el arrray de list) se va actualizar el localstorage guardando la nueva info
         localStorage.setItem("list", JSON.stringify(checklists));
     }, [checklists]);
+
+    useEffect(() => {
+        checklists.length == 0 && localStorage.removeItem("list");
+    });
 
     return (
         <>
@@ -46,8 +56,9 @@ function App() {
                 createChecklist={createChecklist}
                 setChecklist={setChecklist}
             />
+            {error && <ErrorToast error={error} />}
 
-            <main className="bg-gradient-to-b from-primary-300 to-primary-200 h-full">
+            <main className="bg-gradient-to-b from-primary-300 to-primary-200 h-full ">
                 <div className="relative bg-primary-200/20 pt-[20px] rounded-2xl w-[360px] h-[450px] mx-auto shadow-lg shadow-primary-400 ">
                     <div className="w-[360px] h-[365px] overflow-y-scroll scrollbar-hide">
                         <section
@@ -70,7 +81,7 @@ function App() {
                             )}
                         </section>
                     </div>
-                    {checklists.length > 5 && <DownButton />}
+                    {checklists.length > 6 && <DownButton />}
                 </div>
             </main>
         </>
