@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import InputChecklist from "./components/InputChecklist";
+import CardChecklist from "./components/CardChecklist";
 import Header from "./components/Header";
 import DownButton from "./components/DownButton";
 import EmptyChecklist from "./components/EmptyChecklist";
@@ -15,6 +15,7 @@ function App() {
                 {
                     id: Date.now(),
                     list: "🍕 Buy pizza",
+                    completed: false,
                 },
             ];
         }
@@ -34,10 +35,20 @@ function App() {
             {
                 id: Date.now(),
                 list: checklist,
+                completed: false,
             },
         ]);
         setChecklist("");
-        setEr;
+        setError("");
+    };
+
+    const completeTask = (id) => {
+        const check = checklists.map((list) =>
+            list.id === id
+                ? { ...list, completed: !list.completed }
+                : { ...list }
+        );
+        setChecklists(check);
     };
 
     useEffect(() => {
@@ -66,14 +77,16 @@ function App() {
                             className=" flex flex-col items-center gap-1.5 mx-auto h-full "
                         >
                             {checklists.length ? (
-                                checklists.map(({ id, list }) => (
-                                    <InputChecklist
+                                checklists.map(({ id, list, completed }) => (
+                                    <CardChecklist
                                         key={id}
                                         id={id}
                                         list={list}
+                                        completed={completed}
                                         checklist={checklist}
                                         checklists={checklists}
                                         setChecklists={setChecklists}
+                                        completeTask={completeTask}
                                     />
                                 ))
                             ) : (
