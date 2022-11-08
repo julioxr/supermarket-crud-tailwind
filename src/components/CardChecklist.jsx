@@ -17,7 +17,7 @@ const CardChecklist = ({
     const checkedStyle = completed ? "line-through" : "";
 
     return (
-        <div className=" flex items-center rounded-lg bg-gradient-to-l from-primary-400 to-primary-500 text-primary-50  p-2 m-1 w-80 space-x-1 drop-shadow-md shadow-primary-400 transition-all hover:my-3 hover:text-white hover:scale-105 border border-primary-50">
+        <div className="pl-3 flex items-center rounded-lg bg-gradient-to-l from-primary-400 to-primary-500 text-primary-50  p-2 m-1 w-80 space-x-1 drop-shadow-md shadow-primary-400 transition-all hover:text-white hover:my-3 hover:scale-105 border border-primary-50">
             <input
                 type="checkbox"
                 id={id}
@@ -27,7 +27,7 @@ const CardChecklist = ({
             <div className="flex w-full justify-between items-center ">
                 <p
                     onClick={() => completeTask(id)}
-                    className={`${checkedStyle} text-base text-primary-100 py-[7px] w-full`}
+                    className={`${checkedStyle} text-base text-primary-100 py-[7px] pl-1 w-full`}
                 >
                     {list}
                 </p>
